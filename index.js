@@ -23,7 +23,7 @@ app.listen(port, () => console.log('App listening on port ' + port));
 
 const getSeats = async ({ cinemaId, sessionId, featureId }) => {
   const browser = await puppeteer.launch({
-    headless: false,
+    headless: true,
     args: ['--no-sandbox'],
   });
 
