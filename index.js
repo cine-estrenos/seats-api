@@ -9,10 +9,14 @@ const app = express();
 const port = process.env.PORT || 8080;
 
 app.get('/', async (req, res) => {
-  const { cinemaId, sessionId, featureId } = req.query;
-  const { totalSeats, availableSeats } = await getSeats({ cinemaId, sessionId, featureId });
+  try {
+    const { cinemaId, sessionId, featureId } = req.query;
+    const { totalSeats, availableSeats } = await getSeats({ cinemaId, sessionId, featureId });
 
-  return res.send({ totalSeats, availableSeats });
+    return res.send({ totalSeats, availableSeats });
+  } catch (error) {
+    res.sendStatus(500);
+  }
 });
 
 app.listen(port, () => console.log('App listening on port ' + port));
