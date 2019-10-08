@@ -1,7 +1,9 @@
 const express = require('express');
 const puppeteer = require('puppeteer');
 
-require('dotenv').config();
+if (process.NODE_ENV === 'development') {
+  require('dotenv').config();
+}
 
 const app = express();
 const port = process.env.PORT || 8080;
