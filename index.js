@@ -13,11 +13,15 @@ app.get('/', async (req, res) => {
 
     return res.send({ totalSeats, availableSeats });
   } catch (error) {
+    console.log('TCL: error', error);
     res.sendStatus(500);
   }
 });
 
 app.listen(port, () => console.log('App listening on port ' + port));
+
+console.log('TCL: process.env.CINEMARK_USERNAME', process.env.CINEMARK_USERNAME);
+console.log('TCL: process.env.CINEMARK_PASSWORD', process.env.CINEMARK_PASSWORD);
 
 const getSeats = async ({ cinemaId, showId }) => {
   // const browser = await puppeteer.launch({
