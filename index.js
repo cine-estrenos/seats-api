@@ -31,7 +31,7 @@ const getSeats = async ({ cinemaId, showId }) => {
 
   const browser = await chromium.puppeteer.launch({
     executablePath: await chromium.executablePath,
-    args: chromium.args,
+    args: ['--no-sandbox'],
     headless: chromium.headless,
     defaultViewport: chromium.defaultViewport,
   });
