@@ -1,0 +1,22 @@
+{
+  "name": "seats-api",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:cine-estrenos/seats-api.git",
+  "author": "lndgalante <lndgalante@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "chrome-aws-lambda": "^2.0.2",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "puppeteer-core": "^2.0.0"
+  },
+  "scripts": {
+    "start": "node index.js",
+    "dev": "nodemon index.js"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.2",
+    "puppeteer": "^2.0.0"
+  }
+}
