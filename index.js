@@ -1,20 +1,23 @@
+const express = require('express');
 const chromium = require('chrome-aws-lambda');
 
 if (process.env.NODE_ENV === 'development') require('dotenv').config();
 
-exports.handler = async (event, context) => {
+const app = express();
+const port = process.env.PORT || 8080;
+
+app.get('/', async (req, res) => {
   try {
-    const { cinemaId, showId } = event.queryStringParameters;
+    const { cinemaId, showId, featureId } = req.query;
     const { totalSeats, availableSeats } = await getSeats({ cinemaId, showId });
 
-    return {
-      statusCode: 200,
-      body: JSON.stringify({ totalSeats, availableSeats }),
-    };
+    return res.send({ totalSeats, availableSeats });
   } catch (error) {
-    return { statusCode: 500 };
+    res.sendStatus(500);
   }
-};
+});
+
+app.listen(port, () => console.log('App listening on port ' + port));
 
 const getSeats = async ({ cinemaId, showId }) => {
   // const browser = await puppeteer.launch({
